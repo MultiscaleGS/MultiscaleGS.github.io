@@ -20,8 +20,12 @@ function init() {
   if (video1.readyState >= 2 && video2.readyState >= 2 && video3.readyState >= 2) {
     initialized = true;
 
-    canvas.width = 1200;
-    canvas.height = 675;
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
+    video1.currentTime = 0;
+    video2.currentTime = 0;
+    video3.currentTime = 0;
 
     video1.play();
     video2.play();
@@ -147,6 +151,15 @@ function drawLabel(text, startX, endX) {
 
 // 主循环绘制
 function draw() {
+  const t = video1.currentTime;
+
+  if (Math.abs(video2.currentTime - t) > 0.08) {
+    video2.currentTime = t;
+  }
+
+  if (Math.abs(video3.currentTime - t) > 0.08) {
+    video3.currentTime = t;
+  }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   const splitX1 = canvas.width * position1;
