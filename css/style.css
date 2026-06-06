@@ -1,0 +1,55 @@
+body {
+font-family: Arial, sans-serif;
+background-color: #ffffff;
+margin: 0;
+padding: 32px;
+text-align: center;
+color: #000000;
+}
+
+h1 {
+max-width: 1600px;
+margin: 0 auto 18px auto;
+font-size: 42px;
+line-height: 1.25;
+font-weight: bold;
+}
+
+.authors {
+max-width: 1400px;
+margin: 0 auto 28px auto;
+}
+
+.author-names {
+font-size: 24px;      /* 作者名字字号 */
+color: #303030;
+line-height: 1.5;
+margin-bottom: 6px;
+}
+
+.author-institutions {
+font-size: 20px;      /* 机构字号，比作者小 */
+color: #555555;
+line-height: 1.5;
+}
+
+.canvas-wrapper {
+width: 1408px;
+height: 792px;
+margin: 0 auto;
+}
+
+canvas {
+width: 1408px;
+height: 792px;
+border: 0px solid #555;
+cursor: ew-resize;
+display: block;
+border-radius: 12px;
+}
+
+footer {
+font-size: 14px;
+color: #777;
+margin-top: 28px;
+}
