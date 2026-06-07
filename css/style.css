@@ -21,14 +21,14 @@ margin: 0 auto 28px auto;
 }
 
 .author-names {
-font-size: 24px;      /* 作者名字字号 */
+font-size: 24px;
 color: #303030;
 line-height: 1.5;
 margin-bottom: 6px;
 }
 
 .author-institutions {
-font-size: 20px;      /* 机构字号，比作者小 */
+font-size: 20px;
 color: #555555;
 line-height: 1.5;
 }

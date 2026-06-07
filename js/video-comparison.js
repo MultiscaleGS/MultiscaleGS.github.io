@@ -1,6 +1,6 @@
-const video1 = document.getElementById("vid1"); // 左侧 3DGS
-const video2 = document.getElementById("vid2"); // 中间 Pixel-GS
-const video3 = document.getElementById("vid3"); // 右侧 MSGS
+const video1 = document.getElementById("vid1");
+const video2 = document.getElementById("vid2");
+const video3 = document.getElementById("vid3");
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -32,7 +32,6 @@ let position2 = 1.0;
 let draggingLine = null;
 let initialized = false;
 
-// 等待三个视频加载完成
 video1.addEventListener("loadeddata", init);
 video2.addEventListener("loadeddata", init);
 video3.addEventListener("loadeddata", init);
@@ -57,7 +56,6 @@ function init() {
   }
 }
 
-// 拖动交互
 canvas.addEventListener("mousedown", (e) => {
   const x = getCanvasX(e);
   const splitX1 = canvas.width * position1;
@@ -108,7 +106,6 @@ function updatePosition(x) {
   }
 }
 
-// 绘制圆角矩形（标签背景）
 function drawRoundedRect(x, y, w, h, r, color) {
   ctx.beginPath();
   ctx.moveTo(x + r, y);
@@ -125,7 +122,6 @@ function drawRoundedRect(x, y, w, h, r, color) {
   ctx.fill();
 }
 
-// 绘制竖线和箭头
 function drawLineAndArrow(x) {
   ctx.beginPath();
   ctx.moveTo(x, 0);
@@ -156,7 +152,6 @@ function drawLineAndArrow(x) {
   ctx.stroke();
 }
 
-// 绘制视频区域标签
 function drawLabel(text, startX, endX) {
   const labelPaddingX = 12;
   const labelHeight = 30;
@@ -179,7 +174,6 @@ function drawLabel(text, startX, endX) {
   }
 }
 
-// 主循环绘制
 function draw() {
   const t = video1.currentTime;
 
@@ -198,7 +192,7 @@ function draw() {
   const splitX1 = canvas.width * position1;
   const splitX2 = canvas.width * position2;
 
-  // 1. 左侧：完整绘制 3DGS
+  // 1. 3DGS
   ctx.save();
   ctx.beginPath();
   ctx.rect(0, 0, splitX1, canvas.height);
@@ -206,7 +200,7 @@ function draw() {
   ctx.drawImage(video1, 0, 0, canvas.width, canvas.height);
   ctx.restore();
 
-  // 2. 中间：完整绘制 Pixel-GS，但只显示中间区域
+  // 2. MGS
   ctx.save();
   ctx.beginPath();
   ctx.rect(splitX1, 0, splitX2 - splitX1, canvas.height);
@@ -214,7 +208,7 @@ function draw() {
   ctx.drawImage(video2, 0, 0, canvas.width, canvas.height);
   ctx.restore();
 
-  // 3. 右侧：完整绘制 MSGS，但只显示右侧区域
+  // 3. Identification
   ctx.save();
   ctx.beginPath();
   ctx.rect(splitX2, 0, canvas.width - splitX2, canvas.height);
