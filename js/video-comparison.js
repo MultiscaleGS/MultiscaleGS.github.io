@@ -8,17 +8,20 @@ const ctx = canvas.getContext("2d");
 const btnReconstruction = document.getElementById("btn-reconstruction");
 const btnIdentification = document.getElementById("btn-identification");
 
+let targetPosition1 = 0.5;
+let targetPosition2 = 1.0;
+
 btnReconstruction.addEventListener("click", () => {
-  position1 = 0.5;
-  position2 = 1.0;
+  targetPosition1 = 0.5;
+  targetPosition2 = 1.0;
 
   btnReconstruction.classList.add("active");
   btnIdentification.classList.remove("active");
 });
 
 btnIdentification.addEventListener("click", () => {
-  position1 = 0.0;
-  position2 = 0.5;
+  targetPosition1 = 0.0;
+  targetPosition2 = 0.5;
 
   btnIdentification.classList.add("active");
   btnReconstruction.classList.remove("active");
@@ -93,8 +96,16 @@ function updateTouchPos(e) { updatePosition(getTouchCanvasX(e)); }
 
 function updatePosition(x) {
   const p = Math.min(Math.max(x / canvas.width, 0), 1);
-  if (draggingLine === 1) position1 = Math.max(0, Math.min(p, position2));
-  if (draggingLine === 2) position2 = Math.min(1, Math.max(p, position1));
+
+  if (draggingLine === 1) {
+    position1 = Math.max(0, Math.min(p, position2));
+    targetPosition1 = position1;
+  }
+
+  if (draggingLine === 2) {
+    position2 = Math.min(1, Math.max(p, position1));
+    targetPosition2 = position2;
+  }
 }
 
 // 绘制圆角矩形（标签背景）
@@ -179,6 +190,9 @@ function draw() {
   if (Math.abs(video3.currentTime - t) > 0.08) {
     video3.currentTime = t;
   }
+
+  position1 += (targetPosition1 - position1) * 0.12;
+  position2 += (targetPosition2 - position2) * 0.12;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   const splitX1 = canvas.width * position1;

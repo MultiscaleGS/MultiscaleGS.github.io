@@ -35,9 +35,18 @@ line-height: 1.5;
 
 .mode-buttons {
   margin: 22px auto 18px auto;
-  display: flex;
-  justify-content: center;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  width: fit-content;
+}
+
+#btn-reconstruction {
+  justify-self: end;
+}
+
+#btn-identification {
+  justify-self: start;
 }
 
 .mode-btn {
