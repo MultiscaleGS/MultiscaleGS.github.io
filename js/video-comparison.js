@@ -5,8 +5,27 @@ const video3 = document.getElementById("vid3"); // 右侧 MSGS
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-let position1 = 0.33;
-let position2 = 0.66;
+const btnReconstruction = document.getElementById("btn-reconstruction");
+const btnIdentification = document.getElementById("btn-identification");
+
+btnReconstruction.addEventListener("click", () => {
+  position1 = 0.5;
+  position2 = 1.0;
+
+  btnReconstruction.classList.add("active");
+  btnIdentification.classList.remove("active");
+});
+
+btnIdentification.addEventListener("click", () => {
+  position1 = 0.0;
+  position2 = 0.5;
+
+  btnIdentification.classList.add("active");
+  btnReconstruction.classList.remove("active");
+});
+
+let position1 = 0.5;
+let position2 = 1.0;
 let draggingLine = null;
 let initialized = false;
 

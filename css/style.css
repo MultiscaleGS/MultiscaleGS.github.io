@@ -33,6 +33,29 @@ color: #555555;
 line-height: 1.5;
 }
 
+.mode-buttons {
+  margin: 22px auto 18px auto;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.mode-btn {
+  font-size: 20px;
+  padding: 10px 26px;
+  border-radius: 999px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  color: #222222;
+  cursor: pointer;
+}
+
+.mode-btn.active {
+  background: #222222;
+  color: #ffffff;
+  border-color: #222222;
+}
+
 .canvas-wrapper {
 width: 1408px;
 height: 792px;
